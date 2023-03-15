@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 36px;
+}
+
+:root {
+  --bgcol: rgb(144, 142, 142);
+  --current-index-color: rgb(122, 122, 236);
+  --color-correct-tint: rgb(0, 255, 0);
+  --color-incorrect-tint: red;
+  --game-bg-play: rgb(57, 98, 57);
+  --game-bg-wait: rgb(125, 42, 42);
+}
+
+body {
+  background-color: var(--bgcol);
+}
+
+#score {
+  margin-left: 1rem;
+}
+
+#game-container {
+  display: flex;
+  align-items: center;
+
+  margin: 0 auto;
+
+  aspect-ratio: 16/9;
+  width: 70%;
+
+  border-radius: 0 0 1rem 1rem;
+
+  background-color: black;
+
+  overflow: hidden;
+}
+
+#number-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  width: 50%;
+}
+
+.c-number:first-child {
+  margin-right: 0.1rem;
+}
+.c-number:first-child::marker {
+  position: absolute;
+  background-color: white;
+  float: right;
+  right: -0.1rem;
+  content: '';
+  width: 0.1rem;
+  height: 0.1rem;
+}
+
+.c-number {
+  position: relative;
+
+  color: aliceblue;
+}
+
+.current {
+  color: var(--current-index-color);
+  font-weight: bolder;
+}
+
+.green {
+  color: var(--color-correct-tint);
+}
+
+.red {
+  color: var(--color-incorrect-tint);
+}
+
+.p5Canvas {
+  display: none;
+
+  width: 0;
+  height: 0;
+}
