@@ -24,6 +24,11 @@ body {
   margin-left: 1rem;
 }
 
+#correct {
+  margin-left: 0.5rem;
+  color: var(--color-correct-tint);
+}
+
 #game-container {
   display: flex;
   align-items: center;

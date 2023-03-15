@@ -39,6 +39,7 @@ function input(keycd) {
   return keyc;
 }
 
+const correct = document.querySelector('#correct');
 const score = document.querySelector('#score');
 const game_container = document.querySelector('#game-container');
 const number_container = document.querySelector('#number-container');
@@ -54,6 +55,7 @@ function draw() {
     startTime = 0;
     displaying = true;
     game = true;
+    correct.innerHTML = '';
     number_container.innerHTML = '';
   }
 
@@ -129,6 +131,7 @@ function keyPressed() {
   } else {
     game = false;
     child.className += ' red';
+    correct.innerHTML = constant_index(index, constant);
     startTime = Date.now();
   }
 }
