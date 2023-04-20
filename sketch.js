@@ -24,6 +24,24 @@ const validate = c => {
   highscore.innerHTML = localStorage.getItem(constant);
 }
 
+function restart() {
+  sindex = 2;
+  index = 0;
+  displaying = true;
+  number_container.innerHTML = '';
+  startTime = 0;
+}
+
+function mapkeycd(keycd) {
+  switch(keycd) {
+    case 69:
+      return 'e';
+    case 80:
+      return 'p';
+    case 71:
+      return 'g';
+  }
+}
 function input(keycd) {
   const keyc = keycd - 48;
 
@@ -32,26 +50,9 @@ function input(keycd) {
     case 69:
     case 80:
     case 71:
-      sindex = 2;
-      index = 0;
-      displaying = true;
-      number_container.innerHTML = '';
-      startTime = 0;
-  }
-  if(keycd == 69) {
-    constant = 'e';
-    validate(constant);
-    return;
-  }
-  if(keycd == 80) {
-    constant = 'p';
-    validate(constant);
-    return;
-  }
-  if(keycd == 71) {
-    constant = 'g';
-    validate(constant);
-    return;
+      restart();
+      constant = mapkeycd(keycd);
+      validate(constant);
   }
 
   if(keyc < 0 || keyc > 9)
@@ -71,13 +72,10 @@ function draw() {
   currentTime = Date.now();
 
   if(!game && currentTime - startTime > 1000) {
-    index = 0;
-    sindex = 2;
-    startTime = 0;
-    displaying = true;
-    game = true;
     correct.innerHTML = '';
-    number_container.innerHTML = '';
+    restart();
+
+    game = true;
   }
 
   if(!displaying) {
@@ -128,7 +126,14 @@ function keyPressed() {
   if(k < 0)
     return;
 
-  if(!game || displaying) return;
+  if(!game) return;
+
+  if(displaying) {
+    startTime = 0;
+    displaying = false;
+    index = 0;
+    number_container.innerHTML = '';
+  }
 
   if(index > 0)
    document.querySelector('.c-number:nth-child(' + index + ')').className = 'c-number';
